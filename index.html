@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilingual User Study</title>
+    <link rel = "stylesheet" href = "styles.css">
+</head>
+
+<body>
+
+    <div id="id-input-section">
+        <h2 for="participantId">Enter your Prolific ID:</h2><br>
+        <input type="text" id="participantId" placeholder="Enter your Prolific ID"
+               pattern="[A-Za-z0-9]{22,24}" maxlength="24" minlength="22" required
+               title="Please enter a valid 22–24 character Prolific ID."
+               oninput="validateProlificId()"><br><br>
+        <button id="start-btn" onclick="startTask()" disabled>Start</button>
+      </div>
+
+    <div id="main-task" style="display: none;" >
+    <h3> Please read the passage carefully, when done, press the button below.</h3>
+    <p class = "instruction" id = "instruction"> </p>
+    <div class = "passage" id = "mainPassage"> </div>    
+    <button id="next">Continue to questions</button>
+    </div>
+    
+    <script src="content.js"></script>
+    <script>
+
+        let prolificId = "";
+        const passage = document.getElementById("mainPassage");
+        const clickedWords = [];
+        
+
+        function getStudy(){ return JSON.parse(localStorage.getItem("study")); }
+        function setStudy(s){ localStorage.setItem("study", JSON.stringify(s)); }
+
+        function validateProlificId() {
+            const input = document.getElementById("participantId").value.trim();
+            const isValid = /^[A-Za-z0-9]{22,24}$/.test(input);
+            const startBtn = document.getElementById("start-btn");
+            startBtn.disabled = !isValid;
+        }
+       
+        async function startTask() {
+            const startBtn = document.getElementById("start-btn");
+            startBtn.disabled = true;
+            startBtn.textContent = "Proceeding to the study…";
+            prolificId = document.getElementById("participantId").value.trim();
+            let pnum;
+            try {
+                const res = await fetch("https://script.google.com/macros/s/AKfycbyAQbuTmBcZ9tb8uIX1THd8TgeXhHIGNuT6AYUwZBzPIF3ZTSuSVqFVuk_wuVv5i-7L/exec");
+                pnum = (await res.json()).pnum;
+            } catch (e) {
+                pnum = Math.floor(Math.random() * 100000);
+            } 
+
+            const base = [0, 1, 2, 3];
+            const k = pnum % 4;
+            const order = base.slice(k).concat(base.slice(0, k));
+
+            const PAIRS = [[0,1],[2,3],[0,2],[1,3],[0,3],[1,2]];
+            const translated = PAIRS[pnum % 6];
+
+            const conditions = {};
+            PASSAGES.forEach((p, i) => {
+                conditions[p.id] = translated.includes(i) ? "translated" : "plain";
+            });
+
+            const study = {
+                prolificId: prolificId,
+                pnum: pnum,
+                order: order,
+                conditions: conditions,
+                pIndex: 0,
+                passages: {}
+            };
+            PASSAGES.forEach(p => {
+                study.passages[p.id] = {
+                    condition: conditions[p.id],
+                    start: null, end: null, clickedWords: "",
+                    q1: {response:null, start:null, end:null},
+                    q2: {response:null, start:null, end:null},
+                    q3: {response:null, start:null, end:null}
+                };
+            });
+
+            setStudy(study);
+            showPassage();        
+        }
+
+        function showPassage(){
+            const study = getStudy();
+            const p = PASSAGES[study.order[study.pIndex]];
+            const translated = (study.conditions[p.id] === "translated");
+
+            document.getElementById("id-input-section").style.display = "none";
+            document.getElementById("main-task").style.display = "block";
+
+            if (translated){
+                document.getElementById("instruction").textContent =
+                    "Click any underlined word to see its translation.";
+
+                let words_list = "";
+                const pieces = p.text.split(/(\s+)/);
+                for (const piece of pieces){
+                    const key = piece.toLowerCase().replace(/[^a-z]/g, "");
+                    if (p.dict[key]){
+                        words_list += '<span class="word" data-word="' + key + '">' + piece + '</span>';
+                    } else {
+                        words_list += piece;
+                    }
+                }
+                passage.innerHTML = words_list;
+            } else {
+                document.getElementById("instruction").textContent = "";
+                passage.textContent = p.text;
+            }
+
+            study.passages[p.id].start = new Date().toISOString();
+            setStudy(study);
+        }
+        passage.addEventListener("click", function (event){
+            const clicked = event.target;
+
+            if (clicked.classList.contains("word")){
+                const old = document.getElementById("tip");
+                if (old) old.remove();
+                document.querySelectorAll(".active").forEach(w => w.classList.remove("active"));
+
+                clicked.classList.add("active");
+
+                const key = clicked.dataset.word;
+                const study = getStudy();
+                const p = PASSAGES[study.order[study.pIndex]];
+                const translations = p.dict[key];
+
+                const box = document.createElement("div");
+                box.className = "tip";
+                box.id = "tip";
+                box.textContent = translations.join(", ");
+                document.body.appendChild(box);
+                clickedWords.push(key);
+
+                const r = clicked.getBoundingClientRect();
+                box.style.left = r.left + window.scrollX + "px";
+                box.style.top  = r.top + window.scrollY - box.offsetHeight - 2 + "px";
+            }
+        });
+         
+        document.addEventListener("click", function (event){
+        if (!event.target.classList.contains("word")){
+            const old = document.getElementById("tip");
+            if (old) old.remove();
+            document.querySelectorAll(".active").forEach(w => w.classList.remove("active"));
+        }
+    }); 
+
+    document.getElementById("next").addEventListener("click", function(){
+        const study = getStudy();
+        const p = PASSAGES[study.order[study.pIndex]];
+        study.passages[p.id].end = new Date().toISOString();
+        study.passages[p.id].clickedWords = clickedWords.join(",");
+        setStudy(study);
+        window.location.replace("question.html");
+    }); 
+
+    if (localStorage.getItem("study")) showPassage();
+    </script>
+
+</body>
+</html>
