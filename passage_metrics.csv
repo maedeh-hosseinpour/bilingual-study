@@ -1,0 +1,5 @@
+passage,words,sentences,mean_words_per_sentence,mean_syllables_per_word,flesch_reading_ease,flesch_kincaid_grade,gunning_fog,smog_index,coleman_liau_index,automated_readability_index,mean_word_freq_zipf,pct_rare_words,type_token_ratio
+p1_emperor,295,18,16.39,1.451,63.29,8.5,9.54,10.7,8.06,8.2,5.773,2.3,0.603
+p2_evers,314,20,15.7,1.592,55.54,9.4,11.25,11.8,9.63,9.4,5.575,6.1,0.614
+p3_russo,308,20,15.4,1.552,55.84,9.3,9.28,11.0,9.28,8.6,5.796,2.0,0.485
+p4_dolly,319,18,17.72,1.524,61.97,9.0,10.72,12.1,9.92,10.4,5.612,1.2,0.569

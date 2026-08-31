@@ -2,7 +2,7 @@
 const PASSAGES = [
     {
       id: "p1",
-      text: "Many years ago, an Emperor was so excessively fond of new clothes that he spent all his money on them. He did not trouble himself in the least about his soldiers, nor did he care to go to the theatre or the horse races, except if the occasions allowed him to show off his new clothes. He had a different suit for each hour of the day. Like any other king or emperor, one is accustomed to saying, 'He is sitting in council. 'Instead, his advisors always said, 'The Emperor is sitting in his wardrobe.' Time passed away merrily in the large capital city. Strangers arrived every day at the fashionable king’s court. One day, two rogues, calling themselves weavers, made an appearance. They mentioned that they knew how to weave fabrics with the most beautiful colors and elaborate patterns. They claimed that the clothes had the extraordinary property of remaining invisible to everyone who was unfit for the office he held or was exceedingly simple. 'These must indeed be splendid clothes!' thought the Emperor. 'Had I such a suit, I might, at once, find out which men in my realms are unfit for their office and I would also be able to distinguish the wise from the foolish! This fine fabric must be woven for me immediately.' And he ordered large sums of money to be given to both the weavers so they could begin their work immediately. So the two pretending weavers set up two looms and began to work very busily. In reality, they did nothing at all. They asked for the most delicate silk and the purest gold thread but put both into their own knapsacks, and then, they continued pretending to work at the empty looms until late at night.",
+      text: "Many years ago, an Emperor was so excessively fond of new clothes that he spent all his money on them. He did not trouble himself in the least about his soldiers, nor did he care to go to the theatre or the horse races, except if the occasions allowed him to show off his new clothes. He had a different suit for each hour of the day. Like any other king or emperor, one is accustomed to saying, 'He is sitting in council.' Instead, his advisors always said, 'The Emperor is sitting in his wardrobe.' Time passed away merrily in the large capital city. Strangers arrived every day at the fashionable king’s court. One day, two rogues, calling themselves weavers, made an appearance. \n\nThey mentioned that they knew how to weave fabrics with the most beautiful colors and elaborate patterns. They claimed that the clothes had the extraordinary property of remaining invisible to everyone who was unfit for the office he held or was exceedingly simple. 'These must indeed be splendid clothes!' thought the Emperor. 'Had I such a suit, I might, at once, find out which men in my realms are unfit for their office and I would also be able to distinguish the wise from the foolish! This fine fabric must be woven for me immediately.' And he ordered large sums of money to be given to both the weavers so they could begin their work immediately. So the two pretending weavers set up two looms and began to work very busily. In reality, they did nothing at all. They asked for the most delicate silk and the purest gold thread but put both into their own knapsacks, and then, they continued pretending to work at the empty looms until late at night.",
       GL: "8",
       FRE: "63.235",
       dict: {
@@ -16,7 +16,6 @@ const PASSAGES = [
         both:          ["ambos"],
         busily:        ["afanosamente", "atareadamente"],
         calling:       ["llamándose", "haciéndose llamar"],
-        capital:       ["capital"],
         claimed:       ["afirmaron", "aseguraron"],
         clothes:       ["ropa"],
         continued:     ["continuaron", "siguieron"],
@@ -42,7 +41,6 @@ const PASSAGES = [
         hour:          ["hora"],
         immediately:   ["inmediatamente"],
         instead:       ["en cambio", "en su lugar"],
-        invisible:     ["invisible"],
         knapsacks:     ["morrales", "mochilas"],
         knew:          ["sabían", "conocían"],
         least:         ["menos", "lo más mínimo"],
@@ -91,19 +89,15 @@ const PASSAGES = [
 
     {
       id: "p2",
-      text: "Born in 1925, Medgar Evers grew up under segregation in the deep South. He walked 12 miles daily to get to school, eventually earning his high school diploma. Evers served in the U.S. Army from 1943 to 1945, including as a sergeant at the Battle of Normandy. After the war, he attended and studied business at a historically black college now known as Alcorn State University, and he graduated in 1952 and moved to Mound Bayou, Mississippi—a town developed by African Americans. As a military veteran who fought for his country, Evers expected that he would be able to vote. However, he and five friends were deterred at gunpoint. Racism denied his equal rights. Later, he organized boycotts of gas stations with the slogan “Don’t Buy Gas Where You Can’t Use the Restroom.” To fight state laws that made segregation legal, Evers applied to attend the University of Mississippi Law School, but his application was rejected because of his race. That same year, Evers was named the NAACP's first field secretary for Mississippi. In this position, he helped organize boycotts and set up new local chapters of the NAACP. He tried to desegregate public beaches, buses, and parks. Evers led voter registration drives, advocated for school integration, and led investigations into the murder of the teenager Emmett Till. Evers was a prominent black voice, and that made him a target. In the 1960s, civil rights activists lived under constant threat. In May 1963, a bomb was thrown into his garage, and then someone tried to hit him with a car. In June 1963, Evers returned home without his usual FBI or police escort. As he got out of his car, carrying a box of NAACP t-shirts that said “Jim Crow Must Go,” Medgar Evers was shot and killed. Mourned nationally, Evers was buried in Arlington National Cemetery, where he received full military honors.",      GL: "8.4",
+      text: "Born in 1925, Medgar Evers grew up under segregation in the deep South. He walked 12 miles daily to get to school, eventually earning his high school diploma. Evers served in the U.S. Army from 1943 to 1945, including as a sergeant at the Battle of Normandy. After the war, he attended and studied business at a historically black college now known as Alcorn State University, and he graduated in 1952 and moved to Mound Bayou, Mississippi, a town developed by African Americans. \n\nAs a military veteran who fought for his country, Evers expected that he would be able to vote. However, he and five friends were deterred at gunpoint. Racism denied his equal rights. Later, he organized boycotts of gas stations with the slogan “Don’t Buy Gas Where You Can’t Use the Restroom.” To fight state laws that made segregation legal, Evers applied to attend the University of Mississippi Law School, but his application was rejected because of his race. That same year, Evers was named the NAACP's first field secretary for Mississippi. In this position, he helped organize boycotts and set up new local chapters of the NAACP. He tried to desegregate public beaches, buses, and parks. Evers led voter registration drives, advocated for school integration, and led investigations into the murder of the teenager Emmett Till. \n\nEvers was a prominent black voice, and that made him a target. In the 1960s, civil rights activists lived under constant threat. In May 1963, a bomb was thrown into his garage, and then someone tried to hit him with a car. In June 1963, Evers returned home without his usual FBI or police escort. As he got out of his car, carrying a box of NAACP t-shirts that said “Jim Crow Must Go,” Medgar Evers was shot and killed. Mourned nationally, Evers was buried in Arlington National Cemetery, where he received full military honors.",      GL: "8.4",
       FRE: "61.5",
       dict: {
-        activists:     ["activistas"],
+    
         advocated:     ["abogó", "defendió"],
-        african:       ["africano", "afroamericano"],
-        alcorn:        ["Alcorn"],
         americans:     ["estadounidenses", "americanos"],
         applied:       ["solicitó", "postuló"],
         application:   ["solicitud"],
-        Arlington:     ["Arlington"],
         attended:      ["asistió"],
-        Bayou:         ["Bayou"],
         beaches:       ["playas"],
         because:       ["porque"],
         bomb:          ["bomba"],
@@ -122,10 +116,8 @@ const PASSAGES = [
         desegregate:   ["desegregar", "eliminar la segregación"],
         deterred:      ["disuadidos", "detenidos"],
         developed:     ["desarrollado", "fundado"],
-        diploma:       ["diploma"],
         earning:       ["obteniendo", "ganando"],
         eventually:    ["finalmente", "con el tiempo"],
-        evers:         ["Evers"],
         expected:      ["esperaba"],
         field:         ["de campo"],
         fight:         ["luchar", "combatir"],
@@ -140,10 +132,8 @@ const PASSAGES = [
         integration:   ["integración"],
         investigations:["investigaciones"],
         known:         ["conocido"],
-        medgar:        ["Medgar"],
         military:      ["militar"],
         Mississippi:   ["Misisipi"],
-        mound:         ["Mound"],
         mourned:       ["llorado", "de luto por"],
         national:      ["nacional"],
         nationally:    ["a nivel nacional"],
@@ -152,7 +142,7 @@ const PASSAGES = [
         organized:     ["organizó"],
         out:           ["fuera", "afuera"],
         position:      ["puesto", "cargo"],
-        prominent:     ["prominente", "destacado"],
+        prominent:     ["destacado"],
         received:      ["recibió"],
         registration:  ["registro", "inscripción"],
         rejected:      ["rechazada"],
@@ -175,7 +165,6 @@ const PASSAGES = [
         thrown:        ["arrojada", "lanzada"],
         tried:         ["intentó"],
         university:    ["universidad"],
-        veteran:       ["veterano"],
         without:       ["sin"],
         would:         ["podría", "sería"],
         year:          ["año"],
@@ -190,14 +179,13 @@ const PASSAGES = [
 
     {
       id: "p3",
-      text: "The Russo-Japanese War took place between the Empire of Japan and the Russian Empire between 1904 and 1905. The Japanese won the war in 1905, and the Russians lost. The war happened because the Russian Empire and the Empire of Japan disagreed over who should get parts of Manchuria and Korea. The war was fought mostly on the Liaodong Peninsula and Mukden, the seas around Korea, Japan, and the Yellow Sea. The politics of both countries in the war were very complicated. Both wanted to gain land and economic benefits. The Chinese Empire of the Qing Dynasty was large but weak. As a result, Japan and Russia saw an opportunity. Both countries wanted and fought over Qing land and possessions. Russia wanted a warm-water port on the Pacific Ocean for its navy and trade. The harbor at Vladivostok freezes over in the winter, but Port Arthur could be used all year round. Russia had already rented the port from the Qing and had permission to build a Trans-Siberian railway from St Petersburg to Port Arthur. Japan wanted to expand its empire into Korea and China. Japan thought that when Russia completed its railway in 1906, it would be able to beat Japan in a war by being able to supply large numbers of troops there. That obviously made the Japanese nervous, as tensions had been high. Japan wanted to compromise with Russia to avoid war, even if Russia got the better deal. Japan wanted more of Korea and China than it thought Russia would offer. Japan decided to attack before the railway was complete so that it could do well in a war against Russia. The war started with a Japanese surprise attack on Port Arthur and continued with Japanese victories in Manchuria and elsewhere. The last major battle was at Tsushima Strait, which destroyed the Russian Navy.",
+      text: "The Russo-Japanese War took place between the Empire of Japan and the Russian Empire between 1904 and 1905. The Japanese won the war in 1905, and the Russians lost. The war happened because the Russian Empire and the Empire of Japan disagreed over who should get parts of Manchuria and Korea. The war was fought mostly on the Liaodong Peninsula and Mukden, the seas around Korea, Japan, and the Yellow Sea. \n\nThe politics of both countries in the war were very complicated. Both wanted to gain land and economic benefits. The Chinese Empire of the Qing Dynasty was large but weak. As a result, Japan and Russia saw an opportunity. Both countries wanted and fought over Qing land and possessions. Russia wanted a warm-water port on the Pacific Ocean for its navy and trade. The harbor at Vladivostok freezes over in the winter, but Port Arthur could be used all year round. Russia had already rented the port from the Qing and had permission to build a Trans-Siberian railway from St Petersburg to Port Arthur. Japan wanted to expand its empire into Korea and China. Japan thought that when Russia completed its railway in 1906, it would be able to beat Japan in a war by being able to supply large numbers of troops there. \n\nThat obviously made the Japanese nervous, as tensions had been high. Japan wanted to compromise with Russia to avoid war, even if Russia got the better deal. Japan wanted more of Korea and China than it thought Russia would offer. Japan decided to attack before the railway was complete so that it could do well in a war against Russia. The war started with a Japanese surprise attack on Port Arthur and continued with Japanese victories in Manchuria and elsewhere. The last major battle was at Tsushima Strait, which destroyed the Russian Navy.",
       GL: "8.7",
       FRE: "60.2",
       dict: {
         against:       ["contra"],
         already:       ["ya"],
         around:        ["alrededor de"],
-        Arthur:        ["Arturo"],
         be:            ["ser", "estar"],
         beat:          ["vencer", "derrotar"],
         because:       ["porque"],
@@ -227,9 +215,6 @@ const PASSAGES = [
         high:          ["altas", "alto"],
         japanese:      ["japonés", "japoneses"],
         Korea:         ["Corea"],
-        liaodong:      ["Liaodong"],
-        Manchuria:     ["Manchuria"],
-        Mukden:        ["Mukden"],
         nervous:       ["nerviosos"],
         numbers:       ["números", "cantidades"],
         obviously:     ["obviamente"],
@@ -256,8 +241,6 @@ const PASSAGES = [
         thought:       ["pensó", "creía"],
         took:          ["tuvo lugar", "tomó"],
         troops:        ["tropas"],
-        Tsushima:      ["Tsushima"],
-        victories:     ["victorias"],
         vladivostok:   ["Vladivostok"],
         weak:          ["débil"],
         which:         ["cual", "que"],
@@ -273,7 +256,7 @@ const PASSAGES = [
 
     { 
     id: "p4",
-    text: "In 1984, British scientists cloned the first mammals by splitting a sheep embryo. At the time, no one thought it possible to clone an adult animal, but scientists at the Roslin Institute in Scotland persisted and succeeded. They used an adult sheep’s stem cell, found in bone marrow or mammary glands, and transferred the nucleus to another cell to create the embryo. On July 5, 1996, Dolly was born to a surrogate mother. The news of her birth thrilled the public and the scientific world. Although many people believe Dolly was the first clone, her birth was exciting because she was cloned from an adult sheep. This opened up the field of stem cell research. Stem cells are our most basic cells that can develop into any other kind of cell—from muscle to brain cells. Scientists are studying how they can heal damaged tissue or organs, perhaps even helping paralyzed people walk again someday. Dolly’s birth, life, and death also brought ethical issues to the forefront. While stem cell research and cloning technology can and are certainly helping people, some debate whether it's a slippery slope toward radical human genetic engineering. The risks of designer babies or potentially deformed human clones are often mentioned, but the reality is that science is far from able to clone or even elect specific genetic traits. There is still much more to study before humanity is close to that possibility. Dolly’s life was short; she died at six years old though sheep usually live for twice as long. What scientists realized is that specific proteins in her DNA called telomeres were much shorter than other sheep her age. Telomeres get shorter as we age, and Dolly’s were as short as her clone. This begged the question: when Dolly was born, was her DNA already the “same age” as her clone? Furthermore, what implications did that have for the future study of cloning?",
+    text: "In 1984, British scientists cloned the first mammals by splitting a sheep embryo. At the time, no one thought it possible to clone an adult animal, but scientists at the Roslin Institute in Scotland persisted and succeeded. They used an adult sheep’s stem cell, found in bone marrow or mammary glands, and transferred the nucleus to another cell to create the embryo. On July 5, 1996, Dolly was born to a surrogate mother. The news of her birth thrilled the public and the scientific world. Although many people believe Dolly was the first clone, her birth was exciting because she was cloned from an adult sheep. \n\nThis opened up the field of stem cell research. Stem cells are our most basic cells that can develop into any other kind of cell, from muscle to brain cells. Scientists are studying how they can heal damaged tissue or organs, perhaps even helping paralyzed people walk again someday. Dolly’s birth, life, and death also brought ethical issues to the forefront. While stem cell research and cloning technology can and are certainly helping people, some debate whether it's a slippery slope toward radical human genetic engineering. The risks of designer babies or potentially deformed human clones are often mentioned, but the reality is that science is far from able to clone or even elect specific genetic traits. There is still much more to study before humanity is close to that possibility. \n\nDolly’s life was short; she died at six years old though sheep usually live for twice as long. What scientists realized is that specific proteins in her DNA called telomeres were much shorter than other sheep her age. Telomeres get shorter as we age, and Dolly’s were as short as her clone. This begged the question: when Dolly was born, was her DNA already the “same age” as her clone? Furthermore, what implications did that have for the future study of cloning?",
     GL:"8.8",
     FRE:"64.4",
     dict: {
@@ -288,7 +271,6 @@ const PASSAGES = [
       brain:         ["cerebro"],
       british:       ["británicos"],
       brought:       ["trajo"],
-      
       certainly:     ["ciertamente", "sin duda"],
       cloning:       ["clonación"],
       create:        ["crear"],
@@ -325,7 +307,6 @@ const PASSAGES = [
       potentially:   ["potencialmente"],
       proteins:      ["proteínas"],
       question:      ["pregunta"],
-      radical:       ["radical"],
       reality:       ["realidad"],
       realized:      ["se dieron cuenta"],
       research:      ["investigación"],
@@ -345,7 +326,6 @@ const PASSAGES = [
       succeeded:     ["lo lograron", "tuvieron éxito"],
       technology:    ["tecnología"],
       telomeres:     ["telómeros"],
-
       though:        ["aunque"],
       thought:       ["pensó", "creía"],
       thrilled:      ["emocionó", "entusiasmó"],

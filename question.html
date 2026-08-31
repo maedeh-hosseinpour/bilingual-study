@@ -118,9 +118,10 @@ function saveAll(){
 
     localStorage.clear();
 
-    qtext.textContent = "  Thank you for your participation! We truly appreciate your time and contribution!";
+    qtext.textContent = "     Thank you for your participation! We truly appreciate your time and contribution!";
     optBox.innerHTML = "";
     nextBtn.style.display = "none";
+    document.querySelector("h3").style.display = "none";
 }
 
 showQuestion();   

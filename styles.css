@@ -13,6 +13,38 @@ body {
       flex-direction: column;
       justify-content: flex-start;
   }
+  
+  #participantId {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #bcc0ca;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+  #participantId:focus {
+      outline: none;
+      border-color: #4b7b6b;
+  }
+  #start-btn {
+    padding: 10px 30px;
+    margin-top: 16px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #356052;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+#start-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 
   .passage, .qtext {
     box-sizing: border-box;
@@ -20,13 +52,14 @@ body {
     max-width: 800px;      
     margin: 20px auto;
     padding: 30px;
-    font-size: clamp(16px, 2.5vw, 20px);  
+    font-size: clamp(14px, 2.5vw, 18px);  
     line-height: 1.8;
-    text-align: left;      
-    color: #356052;
+    text-align: justify;
+    color: #265344;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
+    white-space: pre-wrap; 
 }
 
 @media (max-width: 600px) {
@@ -35,7 +68,7 @@ body {
 }
 
   .word {
-    color: #3f6f5f;
+    color: #356052;
     cursor: pointer;
     border-bottom: 1.5px dotted #3f6f5f;
   }
@@ -72,7 +105,7 @@ body {
   line-height: 1.6;
 }
 
-  #next, #continue {
+  #next, #continue, #startStudy{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
