@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Questions</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h3> Please select the best option and then click on the "Next" button. </h3>
+        
+        
+        <p class = "qtext" id = "qtext"></p>
+        
+
+        <div id="options"></div>
+        <button id="next" disabled>Done</button>
+
+    <script src="content.js"></script>
+    <script>
+        const study = getStudy();
+        const p = PASSAGES[study.order[study.pIndex]];
+        const questions = p.questions;
+        let current = 0;
+        
+        const qtext   = document.getElementById("qtext");
+        const optBox  = document.getElementById("options");
+        const nextBtn = document.getElementById("next");
+
+        function getStudy(){ return JSON.parse(localStorage.getItem("study")); }
+        function setStudy(s){ localStorage.setItem("study", JSON.stringify(s)); }
+
+        function showQuestion(){
+            const item = questions[current];
+            qtext.textContent = item.q;
+            optBox.innerHTML = "";
+            nextBtn.disabled = true;
+
+            item.options.forEach((opt, i) => {
+                const wrap = document.createElement("label");
+                wrap.className = "option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "answer";
+                radio.value = opt;
+                radio.id = "opt" + i;
+                radio.addEventListener("change", function(){ nextBtn.disabled = false; });
+
+                wrap.appendChild(radio);
+                wrap.appendChild(document.createTextNode(" " + opt));
+                optBox.appendChild(wrap);
+            });
+
+            const lastQuestion = (current === questions.length - 1);
+            const lastPassage  = (study.pIndex === study.order.length - 1);
+            nextBtn.textContent = (lastQuestion && lastPassage) ? "Finish" : "Next";
+
+           
+            study.passages[p.id]["q" + (current + 1)].start = new Date().toISOString();
+            setStudy(study);
+        }
+
+
+        nextBtn.addEventListener("click", function(){
+    const picked = document.querySelector('input[name="answer"]:checked');
+    const slot = study.passages[p.id]["q" + (current + 1)];
+    slot.response = picked.value;
+    slot.end = new Date().toISOString();
+    setStudy(study);
+
+    current++;
+    if (current < questions.length){
+        showQuestion();
+    } else {
+        study.pIndex++;              
+        setStudy(study);
+        if (study.pIndex < study.order.length){
+            window.location.replace("study.html");   
+        } else {
+            saveAll();                
+        }
+    }
+});
+
+function saveAll(){
+    const s = getStudy();
+
+    const row = {
+        "prolific-id": s.prolificId,
+        "participant-number": s.pnum,
+        "sequence": s.order.map(function(i){ return PASSAGES[i].id; }).join(",")
+    };
+
+    ["p1", "p2", "p3", "p4"].forEach(function(pid){
+        const d = s.passages[pid];
+        row[pid + "-condition"]     = d.condition;
+        row[pid + "-start"]         = d.start;
+        row[pid + "-end"]           = d.end;
+        row[pid + "-clicked-words"] = d.clickedWords;
+        [1, 2, 3].forEach(function(n){
+            const q = d["q" + n];
+            row[pid + "-q" + n + "-response"] = q.response;
+            row[pid + "-q" + n + "-start"]    = q.start;
+            row[pid + "-q" + n + "-end"]      = q.end;
+        });
+    });
+
+    console.log("ROW FOR SHEET:", row);
+
+    fetch("https://script.google.com/macros/s/AKfycbyAQbuTmBcZ9tb8uIX1THd8TgeXhHIGNuT6AYUwZBzPIF3ZTSuSVqFVuk_wuVv5i-7L/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(row)
+    })
+    .then(function(){ console.log("Saved"); })
+    .catch(function(err){ console.error("Save failed:", err); });
+
+    localStorage.clear();
+
+    qtext.textContent = "     Thank you for your participation! We truly appreciate your time and contribution!";
+    optBox.innerHTML = "";
+    nextBtn.style.display = "none";
+    document.querySelector("h3").style.display = "none";
+}
+
+showQuestion();   
+
+    </script>
+
+
+    </body>    
+</html>

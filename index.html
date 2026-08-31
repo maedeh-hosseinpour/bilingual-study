@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h3 id="heading">Quick tutorial: let's practice before the study begins.</h3>
+
+    <div id="sample-view">
+        <p class="instruction" id="instruction"></p>
+        <div class="passage" id="samplePassage"></div>
+        <label id="confirm-wrap" class="option" style="display:none; width:90%; max-width:800px; margin:8px auto 0; text-align:left;">
+            <input type="checkbox" id="confirmClick"> I have clicked on "sample" in the box and saw its translation. I know how translation works in the study.
+        </label>
+        <button id="continue">Continue to questions</button>
+    </div>
+
+    <div id="question-view" style="display:none;">
+        <p class="qtext" id="qtext"></p>
+        <div id="options"></div>
+        <button id="startStudy" disabled>Start the study</button>
+    </div>
+
+    <script>
+        const SAMPLE1 = "This is a sample passage. In the real study, you will read a passage like this and then answer a few questions about it.";
+
+        const SAMPLE2_TEXT = "Two of the passages includes translation of some words. These words are underlined. Click the word \"sample\" to see its translation, just like you will during the study.";
+        const SAMPLE2_DICT = { "sample": ["muestra", "ejemplo"] };
+
+        const heading    = document.getElementById("heading");
+        const instruction= document.getElementById("instruction");
+        const passage    = document.getElementById("samplePassage");
+        const sampleView = document.getElementById("sample-view");
+        const questionView = document.getElementById("question-view");
+        const continueBtn= document.getElementById("continue");
+
+        function showSample1(){
+            instruction.textContent = "";
+            passage.textContent = SAMPLE1;
+            document.getElementById("confirm-wrap").style.display = "none";
+            continueBtn.disabled = false;
+        }
+
+        function showSample2(){
+            instruction.textContent = "Click any underlined word to see its translation.";
+            let html = "";
+            const pieces = SAMPLE2_TEXT.split(/(\s+)/);
+            for (const piece of pieces){
+                const key = piece.toLowerCase().replace(/[^a-z]/g, "");
+                if (SAMPLE2_DICT[key]){
+                    html += '<span class="word" data-word="' + key + '">' + piece + '</span>';
+                } else {
+                    html += piece;
+                }
+            }
+            passage.innerHTML = html;
+            document.getElementById("confirm-wrap").style.display = "block";
+            continueBtn.disabled = true;
+            document.getElementById("confirmClick").addEventListener("change", function(){
+            continueBtn.disabled = !this.checked;});
+        }
+
+        passage.addEventListener("click", function (event){
+            const clicked = event.target;
+            if (clicked.classList.contains("word")){
+                const old = document.getElementById("tip");
+                if (old) old.remove();
+                document.querySelectorAll(".active").forEach(w => w.classList.remove("active"));
+
+                clicked.classList.add("active");
+                const key = clicked.dataset.word;
+
+                const box = document.createElement("div");
+                box.className = "tip";
+                box.id = "tip";
+                box.textContent = SAMPLE2_DICT[key].join(", ");
+                document.body.appendChild(box);
+
+                const r = clicked.getBoundingClientRect();
+                box.style.left = r.left + window.scrollX + "px";
+                box.style.top  = r.top + window.scrollY - box.offsetHeight - 2 + "px";
+            }
+        });
+        document.addEventListener("click", function (event){
+            if (!event.target.classList.contains("word")){
+                const old = document.getElementById("tip");
+                if (old) old.remove();
+                document.querySelectorAll(".active").forEach(w => w.classList.remove("active"));
+            }
+        });
+
+        function showQuestion(){
+            heading.textContent = "Please select the best option and then click on the button.";
+            sampleView.style.display = "none";
+            questionView.style.display = "block";
+
+            document.getElementById("qtext").textContent =
+                "Do you understand how the study works and are you ready to begin?";
+
+            const opts = ["Yes, I'm ready to begin.", "No, I'd like to review the samples again."];
+            const optBox = document.getElementById("options");
+            const startBtn = document.getElementById("startStudy");
+
+            opts.forEach((opt, i) => {
+                const wrap = document.createElement("label");
+                wrap.className = "option";
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "ready";
+                radio.value = opt;
+                radio.id = "opt" + i;
+                radio.addEventListener("change", function(){ startBtn.disabled = false; });
+                wrap.appendChild(radio);
+                wrap.appendChild(document.createTextNode(" " + opt));
+                optBox.appendChild(wrap);
+            });
+
+            startBtn.addEventListener("click", function(){
+                const picked = document.querySelector('input[name="ready"]:checked').value;
+                if (picked === opts[0]) {          
+                    window.location.replace("study.html");
+                } else {                           
+                    window.location.reload();       
+              }
+                 });  
+            
+        }
+
+        let step = 1;
+        continueBtn.addEventListener("click", function(){
+            if (step === 1){
+                step = 2;
+                continueBtn.textContent = "Continue to questions";
+                showSample2();
+            } else {
+                showQuestion();
+            }
+        });
+
+        showSample1();   
+    </script>
+
+</body>
+</html>
